@@ -18,5 +18,10 @@ namespace STS.WebUI.Infrastructure.Concrete
             }
             return result;
         }
+
+        public void SignOut()
+        {
+            FormsAuthentication.SignOut();
+        }
     }
 }
