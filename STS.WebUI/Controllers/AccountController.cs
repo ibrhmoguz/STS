@@ -16,19 +16,22 @@ namespace STS.WebUI.WebUI.Controllers
             authProvider = auth;
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         public ViewResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 if (authProvider.Authenticate(model.UserName, model.Password))
                 {
-                    return Redirect(returnUrl ?? Url.Action("Index", "Admin"));
+                    return Redirect(returnUrl ?? Url.Action("Index", "Default"));
                 }
                 else
                 {
@@ -40,6 +43,14 @@ namespace STS.WebUI.WebUI.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult LogOut()
+        {
+            authProvider.SignOut();
+            return RedirectToAction("Login", "Account", null);
         }
     }
 }
