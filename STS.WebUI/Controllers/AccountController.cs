@@ -5,15 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using STS.WebUI.Infrastructure.Abstract;
 using STS.WebUI.Models;
+using STS.Domain.Abstract;
 
 namespace STS.WebUI.WebUI.Controllers
 {
     public class AccountController : Controller
     {
         IAuthProvider authProvider;
-        public AccountController(IAuthProvider auth)
+        IKullaniciRepo kullaniciRepo;
+        public AccountController(IAuthProvider auth, IKullaniciRepo kr)
         {
             authProvider = auth;
+            kullaniciRepo = kr;
         }
 
         [HttpGet]
@@ -29,8 +32,10 @@ namespace STS.WebUI.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (authProvider.Authenticate(model.UserName, model.Password))
+                var kullanici = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciAdi.Equals(model.KullaniciAdi) && x.Sifre.Equals(model.Sifre));
+                if (kullanici != null)
                 {
+                    authProvider.Authenticate(model.KullaniciAdi, model.Sifre);
                     return Redirect(returnUrl ?? Url.Action("Index", "Default"));
                 }
                 else
@@ -49,6 +54,7 @@ namespace STS.WebUI.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult LogOut()
         {
+            Session.Clear();
             authProvider.SignOut();
             return RedirectToAction("Login", "Account", null);
         }

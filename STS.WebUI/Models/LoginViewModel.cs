@@ -9,8 +9,8 @@ namespace STS.WebUI.Models
     public class LoginViewModel
     {
         [Required]
-        public string UserName { get; set; }
+        public string KullaniciAdi { get; set; }
         [Required]
-        public string Password { get; set; }
+        public string Sifre { get; set; }
     }
 }

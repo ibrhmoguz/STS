@@ -1,0 +1,15 @@
+﻿@model STS.WebUI.Models.KullaniciListViewModel
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var p in Model.Kullanicilar)
+{
+    @Html.Partial("KullaniciSummary", p)
+}
+
+<div class="btn-group pull-right">@Html.PageLinks(Model.PagingInfo, x => Url.Action("Liste", new { page = x }))</div>
+
+

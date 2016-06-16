@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using Ninject;
 using STS.WebUI.Infrastructure.Abstract;
 using STS.WebUI.Infrastructure.Concrete;
+using STS.Domain.Abstract;
+using STS.Domain.Concrete;
 
 namespace STS.WebUI.Infrastructure
 {
@@ -46,6 +48,7 @@ namespace STS.WebUI.Infrastructure
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>();
             */
             kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
+            kernel.Bind<IKullaniciRepo>().To<KullaniciRepo>();
         }
     }
 }

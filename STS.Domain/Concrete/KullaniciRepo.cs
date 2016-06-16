@@ -1,0 +1,54 @@
+﻿using STS.Domain.Abstract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using STS.Domain.Entities;
+
+namespace STS.Domain.Concrete
+{
+    public class KullaniciRepo : IKullaniciRepo
+    {
+        private EFDbContext context = new EFDbContext();
+
+        public IEnumerable<Kullanici> Kullanicilar
+        {
+            get
+            {
+                return context.Kullanicilar.ToList();
+            }
+        }
+
+        public void KullaniciKaydet(Kullanici k)
+        {
+            if (k.KullaniciId == 0)
+            {
+                context.Kullanicilar.Add(k);
+            }
+            else
+            {
+                Kullanici kc = context.Kullanicilar.Find(k.KullaniciId);
+                if (kc != null)
+                {
+                    kc.KullaniciAdi = k.KullaniciAdi;
+                    kc.Sifre = k.Sifre;
+                }
+            }
+            context.SaveChanges();
+        }
+
+        public string KullaniciSil(int Id)
+        {
+            Kullanici k = context.Kullanicilar.Find(Id);
+            if (k != null)
+            {
+                context.Kullanicilar.Remove(k);
+                context.SaveChanges();
+                return k.KullaniciAdi;
+            }
+
+            return string.Empty;
+        }
+    }
+}
