@@ -44,6 +44,11 @@ namespace STS.WebUI.Controllers
             return null;
         }
 
+        public ViewResult Ekle()
+        {
+            return View("Guncelle", new Kullanici());
+        }
+
         [HttpPost]
         public ActionResult Guncelle(Kullanici k, HttpPostedFileBase image = null)
         {
@@ -79,11 +84,6 @@ namespace STS.WebUI.Controllers
             }
 
             return RedirectToAction("Liste");
-        }
-
-        public ViewResult Ekle()
-        {
-            return View("Guncelle", new Kullanici());
         }
     }
 }

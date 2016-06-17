@@ -1,8 +1,9 @@
 ﻿@model STS.WebUI.Models.KullaniciListViewModel
 
 @{
-    ViewBag.Title = "Products";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Kullanıcılar";
+    ViewBag.Description = "Sistemde tanımlı kullanıcıları listeler.";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 
 @foreach (var p in Model.Kullanicilar)
