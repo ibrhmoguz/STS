@@ -55,7 +55,11 @@
                         <img src="~/Content/Image/userProfile.jpg" class="img-circle" alt="Kullanıcı Foto">
                     </div>
                     <div class="pull-left info">
-                        <p>Kullanıcı Adı</p>
+                        @if (@Session["CurrentUser"] != null) {
+                           <p>@Session["CurrentUser"].ToString()</p>
+                        }
+                        else
+                        {<p> Kullanıcı Adı </p >}
                         <!-- Status -->
                         <a href="#"><i class="fa fa-circle text-success"></i> Çevrimiçi</a>
                     </div>

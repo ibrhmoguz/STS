@@ -21,5 +21,9 @@ namespace STS.Domain.Entities
 
         public byte[] FotoData { get; set; }
         public string FotoMimeType { get; set; }
+        [Required(ErrorMessage = "Adı giriniz!")]
+        public string Adi { get; set; }
+        [Required(ErrorMessage = "Soyadı giriniz!")]
+        public string Soyadi { get; set; }
     }
 }

@@ -36,6 +36,7 @@ namespace STS.WebUI.WebUI.Controllers
                 if (kullanici != null)
                 {
                     authProvider.Authenticate(model.KullaniciAdi, model.Sifre);
+                    Session["CurrentUser"] = kullanici.Adi + " " + kullanici.Soyadi;
                     return Redirect(returnUrl ?? Url.Action("Index", "Default"));
                 }
                 else

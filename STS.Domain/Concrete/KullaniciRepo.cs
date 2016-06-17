@@ -33,6 +33,8 @@ namespace STS.Domain.Concrete
                 {
                     kc.KullaniciAdi = k.KullaniciAdi;
                     kc.Sifre = k.Sifre;
+                    kc.Adi = k.Adi;
+                    kc.Soyadi = k.Soyadi;
                 }
             }
             context.SaveChanges();
