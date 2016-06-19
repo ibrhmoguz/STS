@@ -27,5 +27,7 @@ namespace STS.Domain.Entities
 
         [Display(Name = "Açıklama")]
         public string Aciklama { get; set; }
+        
+        public DateTime KayitTarihi { get; set; }
     }
 }

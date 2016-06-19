@@ -51,9 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ISilahRepo.cs" />
     <Compile Include="Abstract\IKullaniciRepo.cs" />
     <Compile Include="Abstract\IPersonelRepo.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\SilahRepo.cs" />
     <Compile Include="Concrete\KullaniciRepo.cs" />
     <Compile Include="Concrete\PersonelRepo.cs" />
     <Compile Include="Entities\Pers.cs" />
