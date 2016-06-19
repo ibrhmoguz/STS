@@ -35,6 +35,8 @@ namespace STS.Domain.Concrete
                     kc.Sifre = k.Sifre;
                     kc.Adi = k.Adi;
                     kc.Soyadi = k.Soyadi;
+                    kc.FotoData = k.FotoData;
+                    kc.FotoMimeType = k.FotoMimeType;
                 }
             }
             context.SaveChanges();

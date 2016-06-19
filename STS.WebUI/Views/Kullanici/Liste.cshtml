@@ -2,15 +2,62 @@
 
 @{
     ViewBag.Title = "Kullanıcılar";
+    ViewBag.ControllerName = "Kullanici";
+    ViewBag.ButtonContent = "Kullanici Ekle";
     ViewBag.Description = "Sistemde tanımlı kullanıcıları listeler.";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 
-@foreach (var p in Model.Kullanicilar)
-{
-    @Html.Partial("KullaniciSummary", p)
-}
-
-<div class="btn-group pull-right">@Html.PageLinks(Model.PagingInfo, x => Url.Action("Liste", new { page = x }))</div>
-
-
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Kullanıcı Listesi</h3>
+            </div>
+            <div class="box-body">
+                <table id="tableKullanicilar" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width:5%">Fotoğraf</th>
+                            <th>Kullanıcı Adı</th>
+                            <th>Adı</th>
+                            <th>Soyadı</th>
+                            <th style="width:10%"></th>
+                            <th style="width:10%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var p in Model.Kullanicilar)
+                        {
+                            <tr>
+                                <td><img class="img-circle" width="50" height="50" src="@Url.Action("FotoYukle", "Kullanici", new { @p.KullaniciId })" /></td>
+                                <td>@p.KullaniciAdi</td>
+                                <td>@p.Adi</td>
+                                <td>@p.Soyadi</td>
+                                <td>
+                                    @using (Html.BeginForm("GuncelleView", "Kullanici"))
+                                    {
+                                        @Html.Hidden("kullaniciId", @p.KullaniciId)
+                                        <input type="submit" class="btn btn-block btn-info" value="Düzenle" />
+                                    }
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("Sil", "Kullanici"))
+                                    {
+                                        @Html.Hidden("Id", @p.KullaniciId)
+                                        <input type="submit" class="btn btn-block btn-danger" value="Sil" />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer clearfix">
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Liste", new { page = x }))
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

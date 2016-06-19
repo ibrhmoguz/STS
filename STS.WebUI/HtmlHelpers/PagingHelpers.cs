@@ -15,6 +15,7 @@ namespace STS.WebUI.HtmlHelpers
             var result = new StringBuilder();
             for (int i = 1; i <= pagingInfo.TotalPages; i++)
             {
+                result.Append("<li>");
                 var tag = new TagBuilder("a");
                 tag.MergeAttribute("href", pageUrl(i));
                 tag.InnerHtml = i.ToString();
@@ -25,7 +26,9 @@ namespace STS.WebUI.HtmlHelpers
                 }
                 tag.AddCssClass("btn btn-default");
                 result.Append(tag.ToString());
+                result.Append("</li>");
             }
+            
             return MvcHtmlString.Create(result.ToString());
         }
     }

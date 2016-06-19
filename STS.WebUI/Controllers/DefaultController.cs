@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace STS.WebUI.Controllers
 {
+    [Authorize]
     public class DefaultController : Controller
     {
         [Authorize]

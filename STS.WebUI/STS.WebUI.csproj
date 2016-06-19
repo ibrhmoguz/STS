@@ -208,7 +208,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Kullanici\Liste.cshtml" />
     <Content Include="Views\Kullanici\KullaniciSummary.cshtml" />
@@ -224,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Navigasyon\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STS.Domain\STS.Domain.csproj">

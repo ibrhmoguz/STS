@@ -36,7 +36,9 @@ namespace STS.WebUI.WebUI.Controllers
                 if (kullanici != null)
                 {
                     authProvider.Authenticate(model.KullaniciAdi, model.Sifre);
-                    Session["CurrentUser"] = kullanici.Adi + " " + kullanici.Soyadi;
+                    Session["CurrentUserName"] = kullanici.KullaniciAdi;
+                    Session["CurrentUserName_SurName"] = kullanici.Adi + " " + kullanici.Soyadi;
+                    Session["CurrentUserId"] = kullanici.KullaniciId;
                     return Redirect(returnUrl ?? Url.Action("Index", "Default"));
                 }
                 else
@@ -51,7 +53,6 @@ namespace STS.WebUI.WebUI.Controllers
             }
         }
 
-        [HttpPost]
         [AllowAnonymous]
         public ActionResult LogOut()
         {

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace STS.WebUI.Controllers
 {
+    [Authorize]
     public class KullaniciController : Controller
     {
         IKullaniciRepo kullaniciRepo;
@@ -50,6 +51,13 @@ namespace STS.WebUI.Controllers
         }
 
         [HttpPost]
+        public ViewResult GuncelleView(int kullaniciId)
+        {
+            Kullanici kullanici = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId == kullaniciId);
+            return View("Guncelle", kullanici);
+        }
+
+        [HttpPost]
         public ActionResult Guncelle(Kullanici k, HttpPostedFileBase image = null)
         {
             if (ModelState.IsValid)
@@ -84,6 +92,32 @@ namespace STS.WebUI.Controllers
             }
 
             return RedirectToAction("Liste");
+        }
+
+        public FileContentResult FotoYukle(int kullaniciId)
+        {
+            Kullanici k = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId.Equals(kullaniciId));
+            if (k != null && k.FotoData != null)
+            {
+                return File(k.FotoData, k.FotoMimeType);
+            }
+            else
+            {
+                return File(System.IO.File.ReadAllBytes(ControllerContext.HttpContext.Server.MapPath("~/Content/Image/userProfile.jpg")), "image/jpeg");
+            }
+        }
+
+        public FileContentResult SessionFotoYukle()
+        {
+            Kullanici k = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId.ToString().Equals(Session["CurrentUserId"].ToString()));
+            if (k != null && k.FotoData != null)
+            {
+                return File(k.FotoData, k.FotoMimeType);
+            }
+            else
+            {
+                return File(System.IO.File.ReadAllBytes(ControllerContext.HttpContext.Server.MapPath("~/Content/Image/userProfile.jpg")), "image/jpeg");
+            }
         }
     }
 }

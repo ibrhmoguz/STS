@@ -13,16 +13,22 @@ namespace STS.Domain.Entities
     {
         public int KullaniciId { get; set; }
 
+        [Display(Name ="Kullanıcı Adı")]
         [Required(ErrorMessage = "Kullanıcı adı giriniz!")]
         public string KullaniciAdi { get; set; }
 
+        [Display(Name = "Şifre")]
         [Required(ErrorMessage = "Şifre giriniz!")]
         public string Sifre { get; set; }
 
         public byte[] FotoData { get; set; }
         public string FotoMimeType { get; set; }
+
+        [Display(Name = "Ad")]
         [Required(ErrorMessage = "Adı giriniz!")]
         public string Adi { get; set; }
+
+        [Display(Name = "Soyad")]
         [Required(ErrorMessage = "Soyadı giriniz!")]
         public string Soyadi { get; set; }
     }
