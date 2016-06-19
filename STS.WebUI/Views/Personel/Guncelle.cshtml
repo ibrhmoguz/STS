@@ -1,33 +1,33 @@
-﻿@model STS.Domain.Entities.Kullanici
+﻿@model STS.Domain.Entities.Pers
 
 @{
-    ViewBag.Title = "Kullanıcı Bilgisi";
-    ViewBag.ControllerName = "Kullanici";
-    ViewBag.ButtonContent = "Kullanici Ekle";
-    ViewBag.Description = "Sistemde tanımlı kullanıcı bilgisi görüntülenir.";
+    ViewBag.Title = "Personel Bilgisi";
+    ViewBag.ControllerName = "Personel";
+    ViewBag.ButtonContent = "Personel Ekle";
+    ViewBag.Description = "Sistemde tanımlı personel bilgisi görüntülenir.";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 
 
-@using (Html.BeginForm("Guncelle", "Kullanici", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Guncelle", "Personel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">@Model.KullaniciAdi</h3>
+                    <h3 class="box-title">@Model.PersAd <b></b> @Model.PersSoyad</h3>
                 </div>
                 <form role="form">
                     <div class="box-body">
-                        @Html.HiddenFor(m => m.KullaniciId)
+                        @Html.HiddenFor(m => m.Persid)
                         @foreach (var property in ViewData.ModelMetadata.Properties)
                         {
                             switch (property.PropertyName)
                             {
-                                case "KullaniciId":
+                                case "Persid":
                                 case "FotoData":
                                 case "FotoMimeType":
-                                case "KayitTarihi":
+                                case "PersKayitTarihi":
                                     // do nothing
                                     break;
                                 default:
@@ -51,7 +51,7 @@
                                 </a>
                                 <span class='label  label-info' id="upload-file-info"></span>
                             </div>
-                                <img class="img-circle" width="150" height="150" src="@Url.Action("FotoYukle", "Kullanici", new { Model.KullaniciId })" />
+                            <img class="img-circle" width="150" height="150" src="@Url.Action("FotoYukle", "Personel", new { Model.Persid })" />
                         </div>
                     </div>
                     <div class="box-footer">

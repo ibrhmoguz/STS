@@ -22,6 +22,8 @@ namespace STS.Domain.Concrete
 
         public void KullaniciKaydet(Kullanici k)
         {
+            k.KayitTarihi = DateTime.Now;
+
             if (k.KullaniciId == 0)
             {
                 context.Kullanicilar.Add(k);
@@ -35,8 +37,12 @@ namespace STS.Domain.Concrete
                     kc.Sifre = k.Sifre;
                     kc.Adi = k.Adi;
                     kc.Soyadi = k.Soyadi;
-                    kc.FotoData = k.FotoData;
-                    kc.FotoMimeType = k.FotoMimeType;
+                    if (k.FotoData != null)
+                    {
+                        kc.FotoData = k.FotoData;
+                        kc.FotoMimeType = k.FotoMimeType;
+                    }
+                    kc.KayitTarihi = k.KayitTarihi;
                 }
             }
             context.SaveChanges();

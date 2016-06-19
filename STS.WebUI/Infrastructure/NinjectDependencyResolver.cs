@@ -49,6 +49,7 @@ namespace STS.WebUI.Infrastructure
             */
             kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             kernel.Bind<IKullaniciRepo>().To<KullaniciRepo>();
+            kernel.Bind<IPersonelRepo>().To<PersonelRepo>();
         }
     }
 }

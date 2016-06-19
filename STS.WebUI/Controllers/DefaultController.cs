@@ -12,7 +12,12 @@ namespace STS.WebUI.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            if (Session["CurrentUserId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+                return View();
         }
     }
 }

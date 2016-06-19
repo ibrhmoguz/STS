@@ -52,18 +52,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IKullaniciRepo.cs" />
+    <Compile Include="Abstract\IPersonelRepo.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\KullaniciRepo.cs" />
+    <Compile Include="Concrete\PersonelRepo.cs" />
+    <Compile Include="Entities\Pers.cs" />
+    <Compile Include="Entities\Silah.cs" />
     <Compile Include="Entities\Kullanici.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\DbScripts.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

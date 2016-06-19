@@ -1,10 +1,10 @@
-﻿@model STS.WebUI.Models.KullaniciListViewModel
+﻿@model STS.WebUI.Models.PersonelListViewModel
 
 @{
-    ViewBag.Title = "Kullanıcılar";
-    ViewBag.ControllerName = "Kullanici";
-    ViewBag.ButtonContent = "Kullanici Ekle";
-    ViewBag.Description = "Sistemde tanımlı kullanıcıları listeler.";
+    ViewBag.Title = "Personeller";
+    ViewBag.ControllerName = "Personel";
+    ViewBag.ButtonContent = "Prsonel Ekle";
+    ViewBag.Description = "Sistemde tanımlı personelleri listeler.";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 
@@ -12,39 +12,45 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Kullanıcı Listesi</h3>
+                <h3 class="box-title">Personel Listesi</h3>
             </div>
             <div class="box-body">
                 <table id="tableKullanicilar" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th style="width:5%">Fotoğraf</th>
-                            <th>Kullanıcı Adı</th>
                             <th>Adı</th>
                             <th>Soyadı</th>
+                            <th>T.C. Kimlik No</th>
+                            <th>Kart ID</th>
+                            <th>Kart Seri No</th>
+                            <th>Birlik Adı</th>
                             <th style="width:8%"></th>
                             <th style="width:8%"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var p in Model.Kullanicilar)
+                        @foreach (var p in Model.Personeller)
                         {
                             <tr>
-                                <td><img class="img-circle" width="50" height="50" src="@Url.Action("FotoYukle", "Kullanici", new { @p.KullaniciId })" /></td>
-                                <td>@p.KullaniciAdi</td>
-                                <td>@p.Adi</td>
-                                <td>@p.Soyadi</td>
+                                <td><img class="img-circle" width="50" height="50" src="@Url.Action("FotoYukle", "Personel", new { @p.Persid })" /></td>
+                                <td>@p.PersAd</td>
+                                <td>@p.PersSoyad</td>
+                                <td>@p.PersTcNo</td>
+                                <td>@p.PersKartId</td>
+                                <td>@p.PersKartSeriNo</td>
+                                <td>@p.PersBirlikAdi</td>
                                 <td>
-                                    @using (Html.BeginForm("GuncelleView", "Kullanici"))
+                                    @using (Html.BeginForm("GuncelleView", "Personel"))
                                     {
-                                        @Html.Hidden("kullaniciId", @p.KullaniciId)
+                                        @Html.Hidden("personelId", @p.Persid)
                                         <input type="submit" class="btn btn-block btn-info" value="Düzenle" />
                                     }
                                 </td>
                                 <td>
-                                    @using (Html.BeginForm("Sil", "Kullanici"))
+                                    @using (Html.BeginForm("Sil", "Personel"))
                                     {
-                                        @Html.Hidden("Id", @p.KullaniciId)
+                                        @Html.Hidden("Id", @p.Persid)
                                         <input type="submit" class="btn btn-block btn-danger" value="Sil" />
                                     }
                                 </td>
@@ -61,3 +67,4 @@
         </div>
     </div>
 </div>
+

@@ -11,9 +11,10 @@ namespace STS.Domain.Entities
     [Table("Kullanici")]
     public class Kullanici
     {
+        [Key]
         public int KullaniciId { get; set; }
 
-        [Display(Name ="Kullanıcı Adı")]
+        [Display(Name = "Kullanıcı Adı")]
         [Required(ErrorMessage = "Kullanıcı adı giriniz!")]
         public string KullaniciAdi { get; set; }
 
@@ -31,5 +32,7 @@ namespace STS.Domain.Entities
         [Display(Name = "Soyad")]
         [Required(ErrorMessage = "Soyadı giriniz!")]
         public string Soyadi { get; set; }
+
+        public DateTime KayitTarihi { get; set; }
     }
 }
