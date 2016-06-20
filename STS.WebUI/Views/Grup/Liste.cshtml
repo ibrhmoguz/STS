@@ -1,54 +1,46 @@
-﻿@model STS.WebUI.Models.PersonelListViewModel
+﻿@model STS.WebUI.Models.GrupListViewModel
 
 @{
-    ViewBag.Title = "Personeller";
-    ViewBag.Description = "Sistemde tanımlı personelleri listeler.";
+    ViewBag.Title = "Kullanıcı Grupları";
+    ViewBag.Description = "Sistemde tanımlı kullanıcı gruplarını listeler.";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+@{
+    var counter = 1;
 }
 
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Personel Listesi</h3>
+                <h3 class="box-title">Grup Listesi</h3>
             </div>
             <div class="box-body">
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th style="width:5%">Fotoğraf</th>
-                            <th>Adı</th>
-                            <th>Soyadı</th>
-                            <th>T.C. Kimlik No</th>
-                            <th>Kart ID</th>
-                            <th>Kart Seri No</th>
-                            <th>Birlik Adı</th>
+                            <th>Grup Adı</th>
                             <th style="width:8%"></th>
                             <th style="width:8%"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var p in Model.Personeller)
+                        @foreach (var p in Model.Gruplar)
                         {
                             <tr>
-                                <td><img class="img-circle" width="50" height="50" src="@Url.Action("FotoYukle", "Personel", new { @p.Persid })" /></td>
-                                <td>@p.PersAd</td>
-                                <td>@p.PersSoyad</td>
-                                <td>@p.PersTcNo</td>
-                                <td>@p.PersKartId</td>
-                                <td>@p.PersKartSeriNo</td>
-                                <td>@p.PersBirlikAdi</td>
+                                <td>@p.GrupAdi</td>
                                 <td>
-                                    @using (Html.BeginForm("GuncelleView", "Personel"))
+                                    @using (Html.BeginForm("GuncelleView", "Grup"))
                                     {
-                                        @Html.Hidden("personelId", @p.Persid)
+                                        @Html.Hidden("grupId", @p.GrupId)
                                         <input type="submit" class="btn btn-block btn-info" value="Düzenle" />
                                     }
                                 </td>
                                 <td>
-                                    @using (Html.BeginForm("Sil", "Personel"))
+                                    @using (Html.BeginForm("Sil", "Grup"))
                                     {
-                                        @Html.Hidden("Id", @p.Persid)
+                                        @Html.Hidden("Id", @p.GrupId)
                                         <input type="submit" class="btn btn-block btn-danger" value="Sil" />
                                     }
                                 </td>
@@ -65,4 +57,5 @@
         </div>
     </div>
 </div>
+
 

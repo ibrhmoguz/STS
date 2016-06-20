@@ -1,4 +1,4 @@
-CREATE TABLE `pers` (
+﻿CREATE TABLE `pers` (
   `Persid` int(11) NOT NULL AUTO_INCREMENT,
   `PersAd` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PersSoyad` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -32,3 +32,41 @@ CREATE TABLE `kullanici` (
   `KayitTarihi` datetime DEFAULT NULL,
   PRIMARY KEY (`KullaniciId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `grup` (
+  `GrupId` int(11) NOT NULL AUTO_INCREMENT,
+  `GrupAdi` varchar(45) COLLATE utf8_turkish_ci NOT NULL,
+  PRIMARY KEY (`GrupId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+
+CREATE TABLE `grupkullanici` (
+  `GrupKullaniciId` int(11) NOT NULL AUTO_INCREMENT,
+  `GrupId` int(11) NOT NULL,
+  `KullaniciId` int(11) NOT NULL,
+  PRIMARY KEY (`GrupKullaniciId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+
+CREATE TABLE `grupizin` (
+  `GrupIzinId` int(11) NOT NULL AUTO_INCREMENT,
+  `GrupId` int(11) NOT NULL,
+  `IzinId` int(11) NOT NULL,
+  PRIMARY KEY (`GrupIzinId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+
+CREATE TABLE `izin` (
+  `IzinId` int(11) NOT NULL AUTO_INCREMENT,
+  `IzinAdi` varchar(45) COLLATE utf8_turkish_ci NOT NULL,
+  PRIMARY KEY (`IzinId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+
+
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Sorgulama');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Çıktı Alma');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Rapor Kaydetme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Kullanıcı Ekleme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Kullanıcı Silme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Kullanıcı Değiştirme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Veri Girişi');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Grup ve İzin ayarlama');
+
+

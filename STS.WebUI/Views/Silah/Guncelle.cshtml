@@ -25,6 +25,12 @@
     });
 }
 
+<script type="text/javascript">
+    $('#datepicker').datepicker({
+        autoclose: true
+    });
+</script>
+
 @using (Html.BeginForm("Guncelle", "Silah", FormMethod.Post))
 {
     <div class="row">
@@ -56,13 +62,14 @@
                                     <div class="form-group">
                                         <label>@(property.DisplayName ?? property.PropertyName)</label>
                                         <br />
-                                        @Html.EditorFor(model => model.BakimZamani)
+                                       
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="datepicker">
+                                            <input type="text" class="form-control pull-right" id="datepicker" />
                                         </div>
+                                        @*@Html.EditorFor(model => model.BakimZamani)*@
                                         @Html.ValidationMessage(property.PropertyName)
                                     </div>
                                     break;

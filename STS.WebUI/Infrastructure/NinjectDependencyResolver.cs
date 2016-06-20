@@ -51,6 +51,7 @@ namespace STS.WebUI.Infrastructure
             kernel.Bind<IKullaniciRepo>().To<KullaniciRepo>();
             kernel.Bind<IPersonelRepo>().To<PersonelRepo>();
             kernel.Bind<ISilahRepo>().To<SilahRepo>();
+            kernel.Bind<IGrupRepo>().To<GrupRepo>();
         }
     }
 }
