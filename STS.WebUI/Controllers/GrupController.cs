@@ -13,10 +13,18 @@ namespace STS.WebUI.Controllers
     public class GrupController : Controller
     {
         IGrupRepo grupRepo;
+        IKullaniciRepo kullaniciRepo;
+        IIzinRepo izinRepo;
+        IGrupKullaniciRepo gkRepo;
+        IGrupIzinRepo giRepo;
         public int PageSize = 5;
-        public GrupController(IGrupRepo sr)
+        public GrupController(IGrupRepo sr, IKullaniciRepo krepo, IIzinRepo irepo, IGrupKullaniciRepo gkr, IGrupIzinRepo gir)
         {
             grupRepo = sr;
+            kullaniciRepo = krepo;
+            izinRepo = irepo;
+            gkRepo = gkr;
+            giRepo = gir;
         }
 
         public ViewResult Liste(int page = 1)
@@ -76,6 +84,32 @@ namespace STS.WebUI.Controllers
             }
 
             return RedirectToAction("Liste");
+        }
+
+        [HttpPost]
+        public ViewResult KullaniciVeIzinler(int grupId)
+        {
+            Grup grup = grupRepo.Gruplar.FirstOrDefault(x => x.GrupId == grupId);
+
+            var kullanicilar = (from g in grupRepo.Gruplar
+                                join gk in gkRepo.GrupKullanicilar on g.GrupId equals gk.GrupId
+                                join k in kullaniciRepo.Kullanicilar on gk.KullaniciId equals k.KullaniciId
+                                where g.GrupId.Equals(grupId)
+                                select k).ToList();
+
+            var izinler = (from g in grupRepo.Gruplar
+                           join gi in giRepo.GrupIzinler on g.GrupId equals gi.GrupId
+                           join i in izinRepo.Izinler on gi.IzinId equals i.IzinId
+                           where g.GrupId.Equals(grupId)
+                           select i).ToList();
+
+            var model = new GrupKullaniciIzinViewModel
+            {
+                Grup = grup,
+                Kullanicilar = kullanicilar,
+                Izinler = izinler
+            };
+            return View(model);
         }
     }
 }

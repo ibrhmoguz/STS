@@ -202,6 +202,7 @@
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\FormsAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\GrupKullaniciIzinViewModel.cs" />
     <Compile Include="Models\GrupListViewModel.cs" />
     <Compile Include="Models\SilahListViewModel.cs" />
     <Compile Include="Models\KullaniciListViewModel.cs" />
@@ -228,6 +229,7 @@
     <Content Include="Views\Silah\Guncelle.cshtml" />
     <Content Include="Views\Grup\Liste.cshtml" />
     <Content Include="Views\Grup\Guncelle.cshtml" />
+    <Content Include="Views\Grup\KullaniciVeIzinler.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -22,6 +22,8 @@ namespace STS.Domain.Concrete
         public DbSet<Pers> PersListesi { get; set; }
         public DbSet<Grup> Gruplar { get; set; }
         public DbSet<Izin> Izinler { get; set; }
+        public DbSet<GrupKullanici> GrupKullanicilar { get; set; }
+        public DbSet<GrupIzin> GrupIzinler { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -32,6 +34,8 @@ namespace STS.Domain.Concrete
             modelBuilder.Entity<Silah>().HasKey(q => q.SilahId);
             modelBuilder.Entity<Pers>().HasKey(q => q.Persid);
             modelBuilder.Entity<Grup>().HasKey(q => q.GrupId);
+            modelBuilder.Entity<GrupKullanici>().HasKey(q => q.GrupKullaniciId);
+            modelBuilder.Entity<GrupIzin>().HasKey(q => q.GrupIzinId);
         }
     }
 }

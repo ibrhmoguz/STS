@@ -51,17 +51,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IGrupIzinRepo.cs" />
+    <Compile Include="Abstract\IGrupKullaniciRepo.cs" />
     <Compile Include="Abstract\IIzinRepo.cs" />
     <Compile Include="Abstract\IGrupRepo.cs" />
     <Compile Include="Abstract\ISilahRepo.cs" />
     <Compile Include="Abstract\IKullaniciRepo.cs" />
     <Compile Include="Abstract\IPersonelRepo.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\GrupIzinRepo.cs" />
+    <Compile Include="Concrete\GrupKullaniciRepo.cs" />
     <Compile Include="Concrete\IzinRepo.cs" />
     <Compile Include="Concrete\GrupRepo.cs" />
     <Compile Include="Concrete\SilahRepo.cs" />
     <Compile Include="Concrete\KullaniciRepo.cs" />
     <Compile Include="Concrete\PersonelRepo.cs" />
+    <Compile Include="Entities\GrupKullanici.cs" />
+    <Compile Include="Entities\GrupIzin.cs" />
     <Compile Include="Entities\Izin.cs" />
     <Compile Include="Entities\Pers.cs" />
     <Compile Include="Entities\Grup.cs" />
