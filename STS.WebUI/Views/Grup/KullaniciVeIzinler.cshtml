@@ -6,6 +6,32 @@
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SelectedKullaniciId").change(function () {
+            $("#kullaniciIdEkle").val($(this).find('option:selected').val())
+        });
+
+        $("#SelectedIzinId").change(function () {
+            $("#izinIdEkle").val($(this).find('option:selected').val())
+        });
+
+        $("#kullaniciEkle").click(function (e) {
+            if ($("#SelectedKullaniciId").val() == 0) {
+                alert("Kullanıcı Seçiniz!")
+                e.preventDefault();
+            }
+        });
+
+        $("#IzinEkle").click(function (e) {
+            if ($("#SelectedIzinId").val() == 0) {
+                alert("İzin Seçiniz!")
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
@@ -18,6 +44,22 @@
                 <i class="fa fa-users"></i><h2 class="box-title">Kullanıcılar</h2>
             </div>
             <div class="box-body">
+                <table>
+                    <tr>
+                        <td>
+                            @Html.DropDownListFor(q => q.SelectedKullaniciId, Model.TumKullanicilar)
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            @using (Html.BeginForm("KullaniciEkle", "Grup"))
+                            {
+                                @Html.Hidden("kullaniciIdEkle", @Model.SelectedKullaniciId)
+                                @Html.Hidden("grupID", @Model.Grup.GrupId)
+                                <input id="kullaniciEkle" type="submit" class="btn btn-block btn-success" value="Kullanıcı Ekle" />
+                            }
+                        </td>
+                    </tr>
+                </table>
                 <table class="table table-bordered table-hover">
                     <tbody>
                         @foreach (var p in Model.Kullanicilar)
@@ -29,7 +71,8 @@
                                 <td style="width:8%">
                                     @using (Html.BeginForm("KullaniciCikar", "Grup"))
                                     {
-                                        @Html.Hidden("kullaniciId", @p.KullaniciId)
+                                        @Html.Hidden("kullaniciIdCikar", @p.KullaniciId)
+                                        @Html.Hidden("grupID", @Model.Grup.GrupId)
                                         <input type="submit" class="btn btn-block btn-danger" value="Çıkar" />
                                     }
                                 </td>
@@ -44,6 +87,22 @@
                 <i class="fa fa-shield"></i> <h3 class="box-title">İzinler</h3>
             </div>
             <div class="box-body">
+                <table>
+                    <tr>
+                        <td>
+                            @Html.DropDownListFor(q => q.SelectedIzinId, Model.TumIzinler)
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            @using (Html.BeginForm("IzinEkle", "Grup"))
+                            {
+                                @Html.Hidden("izinIdEkle", @Model.SelectedIzinId)
+                                @Html.Hidden("grupID", @Model.Grup.GrupId)
+                                <input id="IzinEkle" type="submit" class="btn btn-block btn-success" value="İzin Ekle" />
+                            }
+                        </td>
+                    </tr>
+                </table>
                 <table class="table table-bordered table-hover">
                     <tbody>
                         @foreach (var p in Model.Izinler)
@@ -53,7 +112,8 @@
                                 <td style="width:8%">
                                     @using (Html.BeginForm("IzinCikar", "Grup"))
                                     {
-                                        @Html.Hidden("izinId", @p.IzinId)
+                                        @Html.Hidden("izinIdCikar", @p.IzinId)
+                                        @Html.Hidden("grupID", @Model.Grup.GrupId)
                                         <input type="submit" class="btn btn-block btn-danger" value="Çıkar" />
                                     }
                                 </td>

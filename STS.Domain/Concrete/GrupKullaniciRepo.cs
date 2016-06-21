@@ -20,9 +20,20 @@ namespace STS.Domain.Concrete
             }
         }
 
-        public void GrupKaydet(Entities.GrupKullanici g)
+        public void GrupKullaniciKaydet(Entities.GrupKullanici g)
         {
-            throw new NotImplementedException();
+            var grupKullanici = context.GrupKullanicilar.Where(p => p.GrupId.Equals(g.GrupId) && p.KullaniciId.Equals(g.KullaniciId)).FirstOrDefault();
+            if (grupKullanici == null)
+            {
+                context.GrupKullanicilar.Add(g);
+            }
+            else
+            {
+                grupKullanici.GrupId = g.GrupId;
+                grupKullanici.KullaniciId = g.KullaniciId;
+            }
+
+            context.SaveChanges();
         }
 
         public string GrupKullaniciSilGrupIdIle(int grupId)
@@ -30,9 +41,17 @@ namespace STS.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public string GrupKullaniciSilKullaniciIdIle(int kullaniciId)
+        public bool GrupKullaniciSilKullaniciIdVeGrupIdIle(int kullaniciId, int grupId)
         {
-            throw new NotImplementedException();
+            var grupKullanici = context.GrupKullanicilar.Where(p => p.GrupId.Equals(grupId) && p.KullaniciId.Equals(kullaniciId)).FirstOrDefault();
+            if (grupKullanici != null)
+            {
+                context.GrupKullanicilar.Remove(grupKullanici);
+                context.SaveChanges();
+                return true;
+            }
+
+            return false;
         }
     }
 }

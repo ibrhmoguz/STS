@@ -89,6 +89,12 @@ namespace STS.WebUI.Controllers
         [HttpPost]
         public ViewResult KullaniciVeIzinler(int grupId)
         {
+            GrupKullaniciIzinViewModel model = GrupKullaniciVeIzinleriGetir(grupId);
+            return View(model);
+        }
+
+        private GrupKullaniciIzinViewModel GrupKullaniciVeIzinleriGetir(int grupId)
+        {
             Grup grup = grupRepo.Gruplar.FirstOrDefault(x => x.GrupId == grupId);
 
             var kullanicilar = (from g in grupRepo.Gruplar
@@ -103,13 +109,58 @@ namespace STS.WebUI.Controllers
                            where g.GrupId.Equals(grupId)
                            select i).ToList();
 
+            var tumIzinler = izinRepo.Izinler.Select(p => new SelectListItem { Text = p.IzinAdi, Value = p.IzinId.ToString() }).ToList();
+            tumIzinler.Insert(0, new SelectListItem { Text = "Izin seçiniz", Value = "0" });
+
+            var tumKullanicilar = kullaniciRepo.Kullanicilar.Select(p => new SelectListItem { Text = p.KullaniciAdi, Value = p.KullaniciId.ToString() }).ToList();
+            tumKullanicilar.Insert(0, new SelectListItem { Text = "Kullanıcı seçiniz", Value = "0" });
+
             var model = new GrupKullaniciIzinViewModel
             {
                 Grup = grup,
                 Kullanicilar = kullanicilar,
-                Izinler = izinler
+                Izinler = izinler,
+                TumIzinler = tumIzinler,
+                TumKullanicilar = tumKullanicilar,
+                SelectedIzinId = 0,
+                SelectedKullaniciId = 0
             };
-            return View(model);
+            return model;
+        }
+
+        [HttpPost]
+        public ActionResult KullaniciCikar(int kullaniciIdCikar, int grupId)
+        {
+            gkRepo.GrupKullaniciSilKullaniciIdVeGrupIdIle(kullaniciIdCikar, grupId);
+            return LoadToGrupView(grupId);
+        }
+
+        [HttpPost]
+        public ActionResult IzinCikar(int izinIdCikar, int grupId)
+        {
+            giRepo.GrupIzinSilIzinIdVeGrupIdIle(izinIdCikar, grupId);
+            return LoadToGrupView(grupId);
+        }
+
+        [HttpPost]
+        public ActionResult KullaniciEkle(int kullaniciIdEkle, int grupId)
+        {
+            gkRepo.GrupKullaniciKaydet(new GrupKullanici { GrupId = grupId, KullaniciId = kullaniciIdEkle });
+            return LoadToGrupView(grupId);
+        }
+
+        [HttpPost]
+        public ActionResult IzinEkle(int izinIdEkle, int grupId)
+        {
+            giRepo.GrupIzinKaydet(new GrupIzin { GrupId = grupId, IzinId = izinIdEkle });
+            return LoadToGrupView(grupId);
+        }
+
+        private ActionResult LoadToGrupView(int grupId)
+        {
+            ModelState.Clear();
+            GrupKullaniciIzinViewModel model = GrupKullaniciVeIzinleriGetir(grupId);
+            return View("KullaniciVeIzinler", model);
         }
     }
 }

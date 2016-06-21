@@ -11,7 +11,7 @@ namespace STS.Domain.Abstract
     {
         IEnumerable<GrupIzin> GrupIzinler { get; }
         void GrupIzinKaydet(GrupIzin g);
-        string GrupIzinSilIzinIdIle(int izinId);
         string GrupIzinSilGrupIdIle(int grupId);
+        bool GrupIzinSilIzinIdVeGrupIdIle(int izinId, int grupId);
     }
 }

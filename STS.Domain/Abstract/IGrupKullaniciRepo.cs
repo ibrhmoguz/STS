@@ -10,8 +10,8 @@ namespace STS.Domain.Abstract
     public interface IGrupKullaniciRepo
     {
         IEnumerable<GrupKullanici> GrupKullanicilar { get; }
-        void GrupKaydet(GrupKullanici g);
-        string GrupKullaniciSilKullaniciIdIle(int kullaniciId);
+        void GrupKullaniciKaydet(GrupKullanici g);
         string GrupKullaniciSilGrupIdIle(int grupId);
+        bool GrupKullaniciSilKullaniciIdVeGrupIdIle(int kullaniciId, int grupId);
     }
 }

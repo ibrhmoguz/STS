@@ -109,15 +109,16 @@ namespace STS.WebUI.Controllers
 
         public FileContentResult SessionFotoYukle()
         {
-            Kullanici k = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId.ToString().Equals(Session["CurrentUserId"].ToString()));
-            if (k != null && k.FotoData != null)
+            if (Session["CurrentUserId"] != null)
             {
-                return File(k.FotoData, k.FotoMimeType);
+                Kullanici k = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId.ToString().Equals(Session["CurrentUserId"].ToString()));
+                if (k != null && k.FotoData != null)
+                {
+                    return File(k.FotoData, k.FotoMimeType);
+                }
             }
-            else
-            {
-                return File(System.IO.File.ReadAllBytes(ControllerContext.HttpContext.Server.MapPath("~/Content/Image/userProfile.jpg")), "image/jpeg");
-            }
+
+            return File(System.IO.File.ReadAllBytes(ControllerContext.HttpContext.Server.MapPath("~/Content/Image/userProfile.jpg")), "image/jpeg");
         }
     }
 }

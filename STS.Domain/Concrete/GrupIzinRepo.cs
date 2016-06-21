@@ -21,7 +21,18 @@ namespace STS.Domain.Concrete
 
         public void GrupIzinKaydet(GrupIzin g)
         {
-            throw new NotImplementedException();
+            var grupIzin = context.GrupIzinler.Where(p => p.GrupId.Equals(g.GrupId) && p.IzinId.Equals(g.IzinId)).FirstOrDefault();
+            if (grupIzin == null)
+            {
+                context.GrupIzinler.Add(g);
+            }
+            else
+            {
+                grupIzin.GrupId = g.GrupId;
+                grupIzin.IzinId = g.IzinId;
+            }
+
+            context.SaveChanges();
         }
 
         public string GrupIzinSilGrupIdIle(int grupId)
@@ -29,9 +40,17 @@ namespace STS.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public string GrupIzinSilIzinIdIle(int izinId)
+        public bool GrupIzinSilIzinIdVeGrupIdIle(int izinId, int grupId)
         {
-            throw new NotImplementedException();
+            var grupIzin = context.GrupIzinler.Where(p => p.GrupId.Equals(grupId) && p.IzinId.Equals(izinId)).FirstOrDefault();
+            if (grupIzin != null)
+            {
+                context.GrupIzinler.Remove(grupIzin);
+                context.SaveChanges();
+                return true;
+            }
+
+            return false;
         }
     }
 }
