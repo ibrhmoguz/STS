@@ -12,19 +12,19 @@ namespace STS.WebUI.Controllers
     [Authorize]
     public class GrupController : Controller
     {
-        IGrupRepo grupRepo;
         IKullaniciRepo kullaniciRepo;
         IIzinRepo izinRepo;
         IGrupKullaniciRepo gkRepo;
         IGrupIzinRepo giRepo;
+        IGrupRepo grupRepo;
         public int PageSize = 5;
         public GrupController(IGrupRepo sr, IKullaniciRepo krepo, IIzinRepo irepo, IGrupKullaniciRepo gkr, IGrupIzinRepo gir)
         {
-            grupRepo = sr;
-            kullaniciRepo = krepo;
-            izinRepo = irepo;
-            gkRepo = gkr;
-            giRepo = gir;
+            this.grupRepo = sr;
+            this.kullaniciRepo = krepo;
+            this.izinRepo = irepo;
+            this.gkRepo = gkr;
+            this.giRepo = gir;
         }
 
         public ViewResult Liste(int page = 1)
@@ -97,18 +97,6 @@ namespace STS.WebUI.Controllers
         {
             Grup grup = grupRepo.Gruplar.FirstOrDefault(x => x.GrupId == grupId);
 
-            var kullanicilar = (from g in grupRepo.Gruplar
-                                join gk in gkRepo.GrupKullanicilar on g.GrupId equals gk.GrupId
-                                join k in kullaniciRepo.Kullanicilar on gk.KullaniciId equals k.KullaniciId
-                                where g.GrupId.Equals(grupId)
-                                select k).ToList();
-
-            var izinler = (from g in grupRepo.Gruplar
-                           join gi in giRepo.GrupIzinler on g.GrupId equals gi.GrupId
-                           join i in izinRepo.Izinler on gi.IzinId equals i.IzinId
-                           where g.GrupId.Equals(grupId)
-                           select i).ToList();
-
             var tumIzinler = izinRepo.Izinler.Select(p => new SelectListItem { Text = p.IzinAdi, Value = p.IzinId.ToString() }).ToList();
             tumIzinler.Insert(0, new SelectListItem { Text = "Izin seçiniz", Value = "0" });
 
@@ -118,8 +106,8 @@ namespace STS.WebUI.Controllers
             var model = new GrupKullaniciIzinViewModel
             {
                 Grup = grup,
-                Kullanicilar = kullanicilar,
-                Izinler = izinler,
+                Kullanicilar = grupRepo.GrupKullanicilariniGetir(grupId),
+                Izinler = grupRepo.GrupIzinleriniGetir(grupId),
                 TumIzinler = tumIzinler,
                 TumKullanicilar = tumKullanicilar,
                 SelectedIzinId = 0,

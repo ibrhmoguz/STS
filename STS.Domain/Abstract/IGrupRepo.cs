@@ -12,5 +12,8 @@ namespace STS.Domain.Abstract
         IEnumerable<Grup> Gruplar { get; }
         void GrupKaydet(Grup g);
         string GrupSil(int Id);
+        IEnumerable<Kullanici> GrupKullanicilariniGetir(int grupId);
+        IEnumerable<Izin> GrupIzinleriniGetir(int grupId);
+        IEnumerable<string> KullaniciYetkileri(int kullaniciId);
     }
 }

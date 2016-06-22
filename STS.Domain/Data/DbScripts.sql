@@ -14,11 +14,13 @@
 
 CREATE TABLE `silah` (
   `SilahId` int(11) NOT NULL AUTO_INCREMENT,
-  `SilahNo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SilahNo` varchar(45) CHARACTER SET utf8 NOT NULL,
   `Durumu` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `BakimZamani` datetime DEFAULT NULL,
   `Aciklama` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`SilahId`)
+  `KayitTarihi` datetime DEFAULT NULL,
+  PRIMARY KEY (`SilahId`),
+  UNIQUE KEY `SilahNo_UNIQUE` (`SilahNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `kullanici` (

@@ -13,10 +13,12 @@ namespace STS.WebUI.WebUI.Controllers
     {
         IAuthProvider authProvider;
         IKullaniciRepo kullaniciRepo;
-        public AccountController(IAuthProvider auth, IKullaniciRepo kr)
+        IGrupRepo grupRepo;
+        public AccountController(IAuthProvider auth, IKullaniciRepo kr, IGrupRepo grupRepo)
         {
-            authProvider = auth;
-            kullaniciRepo = kr;
+            this.authProvider = auth;
+            this.kullaniciRepo = kr;
+            this.grupRepo = grupRepo;
         }
 
         [HttpGet]
@@ -39,6 +41,7 @@ namespace STS.WebUI.WebUI.Controllers
                     Session["CurrentUserName"] = kullanici.KullaniciAdi;
                     Session["CurrentUserName_SurName"] = kullanici.Adi + " " + kullanici.Soyadi;
                     Session["CurrentUserId"] = kullanici.KullaniciId;
+                    Session["CurrentUser_Auths"] = grupRepo.KullaniciYetkileri(kullanici.KullaniciId);
                     return Redirect(returnUrl ?? Url.Action("Index", "Default"));
                 }
                 else

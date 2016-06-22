@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\GrupController.cs" />
+    <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\SilahController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
@@ -230,6 +231,7 @@
     <Content Include="Views\Grup\Liste.cshtml" />
     <Content Include="Views\Grup\Guncelle.cshtml" />
     <Content Include="Views\Grup\KullaniciVeIzinler.cshtml" />
+    <Content Include="Views\Nav\Menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -239,7 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Navigasyon\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STS.Domain\STS.Domain.csproj">
