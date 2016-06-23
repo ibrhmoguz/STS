@@ -7,5 +7,6 @@ namespace STS.WebUI.Models
     {
         public IEnumerable<Kullanici> Kullanicilar { get; set; }
         public PagingInfo PagingInfo { get; set; }
+        public KullaniciYetkileri kullaniciYetkileri { get; set; }
     }
 }

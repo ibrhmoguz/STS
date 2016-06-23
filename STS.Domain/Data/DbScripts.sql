@@ -68,7 +68,15 @@ INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Rapor Kaydetme');
 INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Kullanıcı Ekleme');
 INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Kullanıcı Silme');
 INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Kullanıcı Değiştirme');
-INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Veri Girişi');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Kullanıcı Listeleme');
 INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Grup ve İzin ayarlama');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Personel Ekleme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Personel Silme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Personel Değiştirme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Personel Listeleme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Ekleme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Silme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Değiştirme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Listeleme');
 
 

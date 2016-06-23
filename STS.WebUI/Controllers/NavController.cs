@@ -12,7 +12,6 @@ namespace STS.WebUI.Controllers
         {
             if (Session["CurrentUser_Auths"] != null)
             {
-
                 return PartialView(Session["CurrentUser_Auths"]);
             }
 

@@ -20,8 +20,14 @@
                             <th>Durumu</th>
                             <th>Bakım Zamanı</th>
                             <th>Açıklama</th>
-                            <th style="width:8%"></th>
-                            <th style="width:8%"></th>
+                            @if (Model.kullaniciYetkileri.SilahDegistirme)
+                            {
+                                <th style="width:8%"></th>
+                            }
+                            @if (Model.kullaniciYetkileri.SilahSilme)
+                            {
+                                <th style="width:8%"></th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -32,20 +38,26 @@
                                 <td>@p.Durumu</td>
                                 <td>@p.BakimZamani</td>
                                 <td>@p.Aciklama</td>
-                                <td>
-                                    @using (Html.BeginForm("GuncelleView", "Silah"))
-                                    {
-                                        @Html.Hidden("silahId", @p.SilahId)
-                                        <input type="submit" class="btn btn-block btn-info" value="Düzenle" />
-                                    }
-                                </td>
-                                <td>
-                                    @using (Html.BeginForm("Sil", "Silah"))
-                                    {
-                                        @Html.Hidden("Id", @p.SilahId)
-                                        <input type="submit" class="btn btn-block btn-danger" value="Sil" />
-                                    }
-                                </td>
+                                @if (Model.kullaniciYetkileri.SilahDegistirme)
+                                {
+                                    <td>
+                                        @using (Html.BeginForm("GuncelleView", "Silah"))
+                                        {
+                                            @Html.Hidden("silahId", @p.SilahId)
+                                            <input type="submit" class="btn btn-block btn-info" value="Düzenle" />
+                                        }
+                                    </td>
+                                }
+                                @if (Model.kullaniciYetkileri.SilahSilme)
+                                {
+                                    <td>
+                                        @using (Html.BeginForm("Sil", "Silah"))
+                                        {
+                                            @Html.Hidden("Id", @p.SilahId)
+                                            <input type="submit" class="btn btn-block btn-danger" value="Sil" />
+                                        }
+                                    </td>
+                                }
                             </tr>
                         }
                     </tbody>

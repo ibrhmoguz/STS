@@ -30,7 +30,8 @@ namespace STS.WebUI.Controllers
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
                     TotalItems = kullaniciRepo.Kullanicilar.Count()
-                }
+                },
+                kullaniciYetkileri = Session["CurrentUser_Auths"] as KullaniciYetkileri
             };
             return View(model);
         }

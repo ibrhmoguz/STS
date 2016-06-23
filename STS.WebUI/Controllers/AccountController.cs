@@ -41,7 +41,7 @@ namespace STS.WebUI.WebUI.Controllers
                     Session["CurrentUserName"] = kullanici.KullaniciAdi;
                     Session["CurrentUserName_SurName"] = kullanici.Adi + " " + kullanici.Soyadi;
                     Session["CurrentUserId"] = kullanici.KullaniciId;
-                    Session["CurrentUser_Auths"] = grupRepo.KullaniciYetkileri(kullanici.KullaniciId);
+                    Session["CurrentUser_Auths"] = new KullaniciYetkileri(grupRepo.KullaniciYetkileri(kullanici.KullaniciId));
                     return Redirect(returnUrl ?? Url.Action("Index", "Default"));
                 }
                 else

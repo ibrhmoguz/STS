@@ -23,8 +23,14 @@
                             <th>Kart ID</th>
                             <th>Kart Seri No</th>
                             <th>Birlik Adı</th>
-                            <th style="width:8%"></th>
-                            <th style="width:8%"></th>
+                            @if (Model.kullaniciYetkileri.PersonelDegistirme)
+                            {
+                                <th style="width:8%"></th>
+                            }
+                            @if (Model.kullaniciYetkileri.PersonelSilme)
+                            {
+                                <th style="width:8%"></th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +44,8 @@
                                 <td>@p.PersKartId</td>
                                 <td>@p.PersKartSeriNo</td>
                                 <td>@p.PersBirlikAdi</td>
+                                @if (Model.kullaniciYetkileri.PersonelDegistirme)
+                                {
                                 <td>
                                     @using (Html.BeginForm("GuncelleView", "Personel"))
                                     {
@@ -45,6 +53,9 @@
                                         <input type="submit" class="btn btn-block btn-info" value="Düzenle" />
                                     }
                                 </td>
+                                }
+                                @if (Model.kullaniciYetkileri.PersonelSilme)
+                                {
                                 <td>
                                     @using (Html.BeginForm("Sil", "Personel"))
                                     {
@@ -52,6 +63,7 @@
                                         <input type="submit" class="btn btn-block btn-danger" value="Sil" />
                                     }
                                 </td>
+                                }
                             </tr>
                         }
                     </tbody>
@@ -65,4 +77,3 @@
         </div>
     </div>
 </div>
-
