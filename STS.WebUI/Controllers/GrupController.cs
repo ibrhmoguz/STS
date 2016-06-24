@@ -132,7 +132,17 @@ namespace STS.WebUI.Controllers
         [HttpPost]
         public ActionResult KullaniciEkle(int kullaniciIdEkle, int grupId)
         {
-            gkRepo.GrupKullaniciKaydet(new GrupKullanici { GrupId = grupId, KullaniciId = kullaniciIdEkle });
+            GrupKullanici grupKullanici = gkRepo.GrupKullanicilar.FirstOrDefault(p => p.KullaniciId.Equals(kullaniciIdEkle));
+            if (grupKullanici == null)
+            {
+                gkRepo.GrupKullaniciKaydet(new GrupKullanici { GrupId = grupId, KullaniciId = kullaniciIdEkle });
+            }
+            else
+            {
+                ViewBag.ActionResultMessage = "Bu kullanıcı " + grupRepo.Gruplar.FirstOrDefault(p => p.GrupId.Equals(grupKullanici.GrupId)).GrupAdi + " grubundadır, eklenemez!";
+                ViewBag.ActionResultMessageType = "warning";
+            }
+
             return LoadToGrupView(grupId);
         }
 

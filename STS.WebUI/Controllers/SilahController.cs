@@ -90,5 +90,10 @@ namespace STS.WebUI.Controllers
         {
             return View();
         }
+
+        public ViewResult ManuelGirisCikis()
+        {
+            return View();
+        }
     }
 }

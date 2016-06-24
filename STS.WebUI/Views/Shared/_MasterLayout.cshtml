@@ -52,7 +52,13 @@
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
-
+                @if (ViewBag.ActionResultMessage != null)
+                {
+                    <div class="alert alert-@ViewBag.ActionResultMessageType alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-info"></i> @ViewBag.ActionResultMessage</h4>
+                    </div>
+                }
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li>
