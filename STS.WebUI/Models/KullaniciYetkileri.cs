@@ -26,6 +26,7 @@ namespace STS.WebUI.Models
         public bool SilahSilme { get; private set; }
         public bool SilahDegistirme { get; private set; }
         public bool SilahListeleme { get; private set; }
+        public bool SilahGirisCikis { get; private set; }
 
         public KullaniciYetkileri(IEnumerable<string> yetkiListesi)
         {
@@ -80,6 +81,9 @@ namespace STS.WebUI.Models
                         break;
                     case "Silah Listeleme":
                         this.SilahListeleme = true;
+                        break;
+                    case "Silah Giriş Çıkış":
+                        this.SilahGirisCikis = true;
                         break;
                     default:
                         break;

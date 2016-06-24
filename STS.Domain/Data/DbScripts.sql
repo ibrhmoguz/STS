@@ -19,6 +19,8 @@ CREATE TABLE `silah` (
   `BakimZamani` datetime DEFAULT NULL,
   `Aciklama` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `KayitTarihi` datetime DEFAULT NULL,
+  `Marka` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Model` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`SilahId`),
   UNIQUE KEY `SilahNo_UNIQUE` (`SilahNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -78,5 +80,6 @@ INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Ekleme');
 INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Silme');
 INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Değiştirme');
 INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Listeleme');
+INSERT INTO `sts`.`izin` (`IzinAdi`) VALUES ('Silah Giriş Çıkış');
 
 

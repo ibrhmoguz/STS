@@ -206,6 +206,7 @@
     <Compile Include="Models\GrupKullaniciIzinViewModel.cs" />
     <Compile Include="Models\GrupListViewModel.cs" />
     <Compile Include="Models\KullaniciYetkileri.cs" />
+    <Compile Include="Models\SessionExpireFilterAttribute.cs" />
     <Compile Include="Models\SilahListViewModel.cs" />
     <Compile Include="Models\KullaniciListViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -233,6 +234,8 @@
     <Content Include="Views\Grup\Guncelle.cshtml" />
     <Content Include="Views\Grup\KullaniciVeIzinler.cshtml" />
     <Content Include="Views\Nav\Menu.cshtml" />
+    <Content Include="Views\Silah\Giris.cshtml" />
+    <Content Include="Views\Silah\Cikis.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

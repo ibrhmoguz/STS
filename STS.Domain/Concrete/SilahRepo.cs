@@ -38,6 +38,8 @@ namespace STS.Domain.Concrete
                     sh.Durumu = s.Durumu;
                     sh.KayitTarihi = s.KayitTarihi;
                     sh.SilahNo = s.SilahNo;
+                    sh.Marka = s.Marka;
+                    sh.Model = s.Model;
                 }
             }
             context.SaveChanges();

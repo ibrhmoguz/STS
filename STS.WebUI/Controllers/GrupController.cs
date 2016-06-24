@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace STS.WebUI.Controllers
 {
     [Authorize]
+    [SessionExpireFilter]
     public class GrupController : Controller
     {
         IKullaniciRepo kullaniciRepo;

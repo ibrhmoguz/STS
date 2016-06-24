@@ -8,6 +8,13 @@
 <!-- Optionally, you can add icons to the links -->
 @*<li class="active"><a href="/Kullanici/Liste"><i class="fa fa-users"></i> <span>Kullanıcılar</span></a></li>
     <li><a href="/Kullanici/Ekle"><i class="fa fa-user"></i> <span>Kullanıcı Ekle</span></a></li>*@
+@if (Model.SilahGirisCikis)
+{
+    <li class="header">SSSS</li>
+    <li><a href="/Silah/Giris"><i class="fa  fa-chevron-circle-right"></i> <span>sss Giriş</span></a></li>
+    <li><a href="/Silah/Cikis"><i class="fa fa-chevron-circle-left"></i> <span>sss Çıkış</span></a></li>
+}
+
 <li class="header">YÖNETİM</li>
 @if (Model.KullaniciListeleme || Model.KullaniciEkleme)
 {

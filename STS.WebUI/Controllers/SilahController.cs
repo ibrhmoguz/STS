@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace STS.WebUI.Controllers
 {
     [Authorize]
+    [SessionExpireFilter]
     public class SilahController : Controller
     {
         ISilahRepo silahRepo;
@@ -77,6 +78,16 @@ namespace STS.WebUI.Controllers
             }
 
             return RedirectToAction("Liste");
+        }
+
+        public ViewResult Giris()
+        {
+            return View();
+        }
+
+        public ViewResult Cikis()
+        {
+            return View();
         }
     }
 }

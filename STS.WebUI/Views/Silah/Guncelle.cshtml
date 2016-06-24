@@ -1,8 +1,8 @@
 ﻿@model STS.Domain.Entities.Silah
 
 @{
-    ViewBag.Title = "Silah Bilgisi";
-    ViewBag.Description = "Sistemde tanımlı silah bilgisi görüntülenir.";
+    ViewBag.Title = "ssss Bilgisi";
+    ViewBag.Description = "Sistemde tanımlı sss bilgisi görüntülenir.";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 
@@ -22,6 +22,30 @@
     {
         Text = "Bakımda",
         Value = "Bakımda"
+    });
+
+    List<SelectListItem> markaListItems = new List<SelectListItem>();
+    markaListItems.Add(new SelectListItem
+    {
+        Text = "Marka1",
+        Value = "Marka1"
+    });
+    markaListItems.Add(new SelectListItem
+    {
+        Text = "Marka2",
+        Value = "Marka2",
+    });
+
+    List<SelectListItem> modelListItems = new List<SelectListItem>();
+    modelListItems.Add(new SelectListItem
+    {
+        Text = "Model1",
+        Value = "Model1"
+    });
+    modelListItems.Add(new SelectListItem
+    {
+        Text = "Model2",
+        Value = "Model2",
     });
 }
 
@@ -49,6 +73,22 @@
                                 case "SilahId":
                                 case "KayitTarihi":
                                     // do nothing
+                                    break;
+                                case "Marka":
+                                    <div class="form-group">
+                                        <label>@(property.DisplayName ?? property.PropertyName)</label>
+                                        <br />
+                                        @Html.DropDownListFor(model => model.Marka, markaListItems, "Marka Seçiniz")
+                                        @Html.ValidationMessage(property.PropertyName)
+                                    </div>
+                                    break;
+                                case "Model":
+                                    <div class="form-group">
+                                        <label>@(property.DisplayName ?? property.PropertyName)</label>
+                                        <br />
+                                        @Html.DropDownListFor(model => model.Model, modelListItems, "Model Seçiniz")
+                                        @Html.ValidationMessage(property.PropertyName)
+                                    </div>
                                     break;
                                 case "Durumu":
                                     <div class="form-group">

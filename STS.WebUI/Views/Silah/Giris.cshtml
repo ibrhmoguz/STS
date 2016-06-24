@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "SSS Giriş";
+    ViewBag.Description = "asdfasdf asdf";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#inputPersonelId").on('input', function () {
+            $("#divPersonelInfoLoading").show();
+
+            $.ajax({
+                method: "POST",
+                url: "/Personel/PersonelSorgula",
+                data: { personelId: $("#inputPersonelId").val() }
+            }).done(function (msg) {
+                alert("PersonelId: " + msg);
+            });
+
+            $("#divPersonelInfoLoading").hide();
+        });
+    });
+</script>
+
+<div class="col-md-6">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Personel</h3>
+        </div>
+        <div class="box-body">
+            <input id="inputPersonelId" class="form-control input-lg" type="text" placeholder="Personel kartını okutunuz, veya personel ID'sini giriş yapınız">
+            <br>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">SSS</h3>
+        </div>
+        <div class="box-body">
+            <input id="inputSilahId" class="form-control input-lg" type="text" placeholder="sss kartını okutunuz, veya sss ID'sini giriş yapınız">
+            <br>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div id="divPersonelBilgi" class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Personel</h3>
+        </div>
+        <div class="box-body">
+            <img class="img-circle" width="150" height="150" src="@Url.Action("SessionFotoYukle", "Kullanici")" />
+            <br>
+        </div>
+        <!-- /.box-body -->
+        <div id="divPersonelInfoLoading" style="visibility:hidden" class="overlay"><i class="fa fa-refresh fa-spin"></i></div>
+    </div>
+</div>
+
+

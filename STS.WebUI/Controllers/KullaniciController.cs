@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace STS.WebUI.Controllers
 {
     [Authorize]
+    [SessionExpireFilter]
     public class KullaniciController : Controller
     {
         IKullaniciRepo kullaniciRepo;
@@ -100,21 +101,26 @@ namespace STS.WebUI.Controllers
             Kullanici k = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId.Equals(kullaniciId));
             if (k != null && k.FotoData != null)
             {
+               
                 return File(k.FotoData, k.FotoMimeType);
             }
-            else
-            {
-                return File(System.IO.File.ReadAllBytes(ControllerContext.HttpContext.Server.MapPath("~/Content/Image/userProfile.jpg")), "image/jpeg");
-            }
+            return File(System.IO.File.ReadAllBytes(ControllerContext.HttpContext.Server.MapPath("~/Content/Image/userProfile.jpg")), "image/jpeg");
         }
 
         public FileContentResult SessionFotoYukle()
         {
+            if (Session["CurrentUser_FotoData"] != null && Session["CurrentUser_FotoMimeType"] != null)
+            {
+                return File(Session["CurrentUser_FotoData"] as byte[], Session["CurrentUser_FotoMimeType"].ToString());
+            }
+
             if (Session["CurrentUserId"] != null)
             {
                 Kullanici k = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId.ToString().Equals(Session["CurrentUserId"].ToString()));
                 if (k != null && k.FotoData != null)
                 {
+                    Session["CurrentUser_FotoData"] = k.FotoData;
+                    Session["CurrentUser_FotoMimeType"] = k.FotoMimeType;
                     return File(k.FotoData, k.FotoMimeType);
                 }
             }

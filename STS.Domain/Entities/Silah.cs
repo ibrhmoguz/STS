@@ -29,5 +29,11 @@ namespace STS.Domain.Entities
         public string Aciklama { get; set; }
         
         public DateTime KayitTarihi { get; set; }
+
+        [Display(Name = "Marka")]
+        public string Marka { get; set; }
+
+        [Display(Name = "Model")]
+        public string Model { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace STS.WebUI.Controllers
 {
     [Authorize]
+    [SessionExpireFilter]
     public class PersonelController : Controller
     {
         IPersonelRepo personelRepo;
@@ -106,6 +107,13 @@ namespace STS.WebUI.Controllers
             {
                 return File(System.IO.File.ReadAllBytes(ControllerContext.HttpContext.Server.MapPath("~/Content/Image/userProfile.jpg")), "image/jpeg");
             }
+        }
+
+        [HttpPost]
+        public string PersonelSorgula(int personelId)
+        {
+            Pers p = personelRepo.PersonelListesi.FirstOrDefault(x => x.Persid.Equals(personelId));
+            return p.PersAd + " " + p.PersSoyad;
         }
     }
 }
