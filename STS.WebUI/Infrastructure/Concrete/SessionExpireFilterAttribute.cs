@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace STS.WebUI.Models
+namespace STS.WebUI.Infrastructure.Concrete
 {
     public class SessionExpireFilterAttribute : ActionFilterAttribute
     {
